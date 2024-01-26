@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Abuse Detection</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles2.css') }}">
+</head>
+<body>
+
+  <form action="/perform_abuse_detection" method="post">
+      <label>Type your text here</label><br>
+      <textarea name="abuse_text"></textarea><br>
+      <input type="submit" value="Perform Abuse Detection">
+  </form>
+
+  <div class="result-container">
+    <p>{% if response %}
+        Abuse Detection Results:<br>
+        <br>
+      {% if response['abusive'] > 0.5 %}
+          Abuse Detected: {{ response['abusive'] }}<br>
+      {% else %}
+          No abuse detected.<br>
+      {% endif %}
+    {% endif %}
+    </p>
+  </div>
+</body>
+</html>

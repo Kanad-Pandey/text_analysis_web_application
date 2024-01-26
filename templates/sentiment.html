@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sentiment Analysis</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles2.css') }}">
+</head>
+<body>
+
+  <form action="/perform_sentiment" method="post">
+      <label>Type your text here</label><br>
+      <textarea name="sentiment_text"></textarea><br>
+      <input type="submit" value="Perform Sentiment Analysis">
+  </form>
+
+  <div class="result-container">
+    <p>{% if response %}
+      Sentiment Analysis Results:<br>
+        <br>
+      Negative: {{ response['sentiment']['negative'] }}<br>
+      Neutral: {{ response['sentiment']['neutral'] }}<br>
+      Positive: {{ response['sentiment']['positive'] }}<br>
+    {% endif %}
+    </p>
+  </div>
+</body>
+</html>

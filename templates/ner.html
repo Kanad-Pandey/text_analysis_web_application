@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NER</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles2.css') }}">
+</head>
+<body>
+
+  <form action="/perform_ner" method="post">
+      <label>Type your text here</label><br>
+      <textarea name="ner_text"></textarea><br>
+      <input type="submit" value="Perform NER">
+  </form>
+
+  <div class="result-container">
+    <p>{% if response %}
+        NER Results:<br>
+        <br>
+      {% for i in response['entities'] %}
+          {{ i['name'] + " ==> " + i['category'] }}<br>
+
+      {% endfor %}
+    {% endif %}
+      </p>
+  </div>
+
+</body>
+</html>
